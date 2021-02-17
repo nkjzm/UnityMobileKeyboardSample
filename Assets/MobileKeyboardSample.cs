@@ -31,7 +31,7 @@ public class MobileKeyboardSample : MonoBehaviour
 #endif
 
         submitButton.onClick.AsObservable()
-            .Subscribe(async unit => Send())
+            .Subscribe(unit => Send())
             .AddTo(this);
 
 #if !UNITY_EDITOR
@@ -79,16 +79,8 @@ public class MobileKeyboardSample : MonoBehaviour
                     .GetComponent<RectTransform>().sizeDelta.y;
                 var rate = resolutionHeight / Screen.height;
 
-                // キーボードが非表示の時は 0
                 var margin = (int) (height <= 0 ? 0 : (height - safeAreaBottom) * rate);
                 chatContainer.sizeDelta = new Vector2(0, -margin);
-
-                Debug.Log($"height: {height}");
-                Debug.Log($"safeAreaBottom: {safeAreaBottom}");
-                Debug.Log($"resolutionHeight: {resolutionHeight}");
-                Debug.Log($"Screen.height: {Screen.height}");
-                Debug.Log($"rate: {rate}");
-                Debug.Log($"(height + safeAreaBottom) * rate: {(height - safeAreaBottom) * rate}");
             }).AddTo(this);
     }
 
